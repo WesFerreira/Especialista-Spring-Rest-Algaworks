@@ -6,8 +6,6 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 
-import java.util.List;
-
 public class InclusaoCozinhaMain {
 
     public static void main(String[] args) {
@@ -23,8 +21,8 @@ public class InclusaoCozinhaMain {
         Cozinha cozinha2 = new Cozinha();
         cozinha2.setNome("Italiana");
 
-        cozinha1 =cadastroCozinha.adicionar(cozinha1);
-        cozinha2 = cadastroCozinha.adicionar(cozinha2);
+        cozinha1 =cadastroCozinha.salvar(cozinha1);
+        cozinha2 = cadastroCozinha.salvar(cozinha2);
 
         System.out.printf("%d - %s\n", cozinha1.getId(), cozinha1.getNome());
         System.out.printf("%d - %s\n", cozinha2.getId(), cozinha2.getNome());
