@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/estados")
-public class ControllerEstado {
+public class EstadoController {
 
     @Autowired
     private EstadoRepository estadoRepository;

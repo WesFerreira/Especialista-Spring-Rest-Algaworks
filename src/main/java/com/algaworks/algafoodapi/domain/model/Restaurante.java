@@ -3,7 +3,6 @@ package com.algaworks.algafoodapi.domain.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.dialect.MySQLDialect;
 
 import java.math.BigDecimal;
 
