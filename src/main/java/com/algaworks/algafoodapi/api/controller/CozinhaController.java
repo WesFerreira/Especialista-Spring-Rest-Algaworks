@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/cozinhas")
-public class ControllerCozinha {
+public class CozinhaController {
 
     @Autowired
     private CozinhaRepository cozinhaRepository;
@@ -58,7 +58,7 @@ public class ControllerCozinha {
         if (cozinhaAtual != null) {
             BeanUtils.copyProperties(cozinha, cozinhaAtual, "id");
 
-            cozinhaRepository.salvar(cozinhaAtual);
+            cadastroCozinha.salvar(cozinhaAtual);
             return ResponseEntity.ok(cozinhaAtual);
         }
         return ResponseEntity.notFound().build();
