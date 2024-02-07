@@ -38,11 +38,11 @@ public class CadastroRestauranteService {
 
         } catch (EmptyResultDataAccessException e) {
             throw new EntidadeNaoEncontradaException(
-                    String.format("Não existe um cadastro de cidade para o código %d", id));
+                    String.format("Não existe um cadastro de restaurante para o código %d", id));
 
         } catch (DataIntegrityViolationException e) {
             throw new EntidadeEmUsoException(
-                    String.format("Cidade de código %d não pode ser removida, pois está em uso", id));
+                    String.format("Restaurante de código %d não pode ser removida, pois está em uso", id));
         }
     }
 
