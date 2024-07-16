@@ -4,6 +4,8 @@ import com.algaworks.algafoodapi.domain.model.Restaurante;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -19,30 +21,14 @@ public class RestauranteRepositoryImpl {
 
     public List<Restaurante> find (String nome, BigDecimal taxaFreteInicial, BigDecimal taxaFreteFinal) {
 
-        var jpql = new StringBuilder();
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Restaurante> criteria = builder.createQuery(Restaurante.class);
 
-        jpql.append(" from Restaurante where 0 = 0 ");
+        criteria.from(Restaurante.class);
 
-        var parametros = new HashMap<String, Object>();
-
-        if (StringUtils.hasLength(nome)) {
-            jpql.append(" and nome like :nome");
-            parametros.put("nome", "%" + nome + "%");
-        }
-        if (taxaFreteInicial != null) {
-            jpql.append(" and taxaFrete >= :taxaInicial ");
-            parametros.put("taxaInicial", taxaFreteInicial);
-        }
-        if (taxaFreteFinal != null) {
-            jpql.append(" and taxaFrete >= :taxaFinal ");
-            parametros.put("taxaFinal", taxaFreteFinal);
-        }
-
-        TypedQuery<Restaurante> query = manager.createQuery(jpql.toString(), Restaurante.class);
-
-        parametros.forEach(query::setParameter);
-
+        TypedQuery<Restaurante> query = manager.createQuery(criteria);
         return query.getResultList();
+
     }
 
 }
