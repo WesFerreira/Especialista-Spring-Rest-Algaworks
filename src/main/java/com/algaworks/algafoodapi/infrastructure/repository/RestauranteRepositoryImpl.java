@@ -9,10 +9,8 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -26,11 +24,11 @@ public class RestauranteRepositoryImpl {
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<Restaurante> criteria = builder.createQuery(Restaurante.class);
 
-        Root<Restaurante> root = criteria.from(Restaurante.class);
+        Root<Restaurante> restauranteRoot = criteria.from(Restaurante.class);
 
-        Predicate nomePredicate = builder.like(root.get("nome"), "%" + nome + "%");
-        Predicate taxaInicialPredicate = builder.greaterThanOrEqualTo(root.get("taxaFrete"), taxaFreteInicial);
-        Predicate taxaFinalPredicate = builder.lessThanOrEqualTo(root.get("taxaFrete"), taxaFreteFinal);
+        Predicate nomePredicate = builder.like(restauranteRoot.get("nome"), "%" + nome + "%");
+        Predicate taxaInicialPredicate = builder.greaterThanOrEqualTo(restauranteRoot.get("taxaFrete"), taxaFreteInicial);
+        Predicate taxaFinalPredicate = builder.lessThanOrEqualTo(restauranteRoot.get("taxaFrete"), taxaFreteFinal);
 
         criteria.where(nomePredicate, taxaInicialPredicate, taxaFinalPredicate);
 
