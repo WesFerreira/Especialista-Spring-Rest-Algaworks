@@ -54,12 +54,14 @@ public class RestauranteController {
     }
 
     @PutMapping("/id/{id}")
-    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody Restaurante restaurante) {
+    public ResponseEntity<?> atualizar(@PathVariable Long id,
+                           @RequestBody Restaurante restaurante) {
         try {
-            Optional<Restaurante> restauranteAtual = restauranteRepository.findById(id);
-            if (restauranteAtual.isPresent()) {
-                BeanUtils.copyProperties(restaurante, restauranteAtual, "id");
-                cadastroRestaurante.salvar(restauranteAtual.get());
+            Restaurante restauranteAtual = restauranteRepository.findById(id).orElse(null);
+            if (restauranteAtual != null) {
+                BeanUtils.copyProperties(restaurante, restauranteAtual,
+                        "id", "formasPagamento");
+                restauranteAtual = cadastroRestaurante.salvar(restauranteAtual);
                 return ResponseEntity.ok(restauranteAtual);
             }
             return ResponseEntity.notFound().build();
