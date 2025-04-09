@@ -13,9 +13,9 @@ insert into cidade (nome, estado_id) values ('Foz do Iguacu', 2);
 insert into cidade (nome, estado_id) values ('Baependi', 3);
 insert into cidade (nome, estado_id) values ('Brasopolis', 3);
 
-insert into restaurante (nome, taxa_frete, cozinha_id) values ('Brasil food', 10, 1);
-insert into restaurante (nome, taxa_frete, cozinha_id) values ('Akami', 9.50, 2);
-insert into restaurante (nome, taxa_frete, cozinha_id) values ('Hioki', 15, 2);
+insert into restaurante (nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao, endereco_cidade_id, endereco_cep, endereco_logradouro, endereco_numero, endereco_bairro) values ('Brasil food', 10, 1, utc_timestamp, utc_timestamp, 1, '38400-999', 'Rua João Pinheiro', '1000', 'Centro');
+insert into restaurante (nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao) values ('Akami', 9.50, 2, utc_timestamp, utc_timestamp);
+insert into restaurante (nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao) values ('Hioki', 15, 2, utc_timestamp, utc_timestamp);
 
 insert into permissao (nome, descricao) values ('administrador', 'autorizado a fazer alteracoes');
 insert into permissao (nome, descricao) values ('usuario', 'apenas consultas');
